@@ -9,7 +9,7 @@ let emailOk = false
 
 function validarNome(){
 
-    //Variavel de EscopoLocal
+    //Variavel de Escopo Local
     let txtNome = document.querySelector("#txtNome")
 
     if(nome.value.length < 3){
@@ -19,7 +19,7 @@ function validarNome(){
     }else{
         txtNome.innerHTML = "✔"
         txtNome.style.color = "green"
-        nomeOK = true
+        nomeOk = true
     }
 }
 
@@ -55,6 +55,8 @@ function validarEmailRegEx(){
 }
 
 function enviarFormulario(){
+    console.log(nomeOk)
+    console.log(emailOk)
     if(nomeOk === true && emailOk === true){
         alert(nome.value + ", obrigado pela sua mensagem");
     }else{
@@ -63,16 +65,16 @@ function enviarFormulario(){
 }
 
 function consultarCep(){
-    console.log(cep)
+    console.log(cep.value)
 const url = `https://viacep.com.br/ws/${cep.value}/json/`;
 fetch(url)
 .then((response) => response.json())
 .then((jsonBody) => {
-    document.getElementById("dados").innerHTML =
-    jsonBody.lugadouro + "\n" + jsonBody.bairro + "\n" + jsonBody.localidade + "\n" + jsonBody.uf
+    document.getElementById("endereco").innerHTML =
+    jsonBody.logradouro + "\n" + jsonBody.bairro + "\n" + jsonBody.localidade + "\n" + jsonBody.uf
 })
 .catch((error) => {
     alert("Cep não encontrado!");
-});
+})
 
 }
